@@ -1,6 +1,6 @@
 package com.hong.extrad.service;
 
-import com.hong.extrad.ExtraadApplication;
+import com.hong.extrad.ExtraAdApplication;
 import com.hong.extrad.exception.CustomException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @Date Create in  12:02 上午 2020/7/27
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ExtraadApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = {ExtraAdApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class TransactionTest {
 
     @Autowired

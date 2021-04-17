@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.io.IOException;
+
 /**
  * @Author: ZhangDeHong
  * @Describe: TODO
@@ -25,14 +27,15 @@ public class ISpringTransactionImpl implements ISpringTransaction {
     public ISpringTransactionImpl (ExtraAdDao extraAdDao) {this.extraAdDao = extraAdDao;}
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public void catchExceptionCanNotRollBack () {
         try {
-            extraAdDao.save(new ExtraAd("dh"));
-            throw new RuntimeException();
+            extraAdDao.save(new ExtraAd("dh444444422"));
+            throw new IOException();
         } catch (Exception e) {
             e.printStackTrace();
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            throw new RuntimeException();
+            // TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
     }
 
@@ -40,7 +43,7 @@ public class ISpringTransactionImpl implements ISpringTransaction {
     @Transactional
     public void notRuntimeExceptionCanNotRollBack () throws CustomException {
         try {
-            extraAdDao.save(new ExtraAd("dh"));
+            extraAdDao.save(new ExtraAd("dh2222"));
             throw new RuntimeException();
         } catch (Exception e) {
             throw new CustomException(e.getMessage());
